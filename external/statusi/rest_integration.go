@@ -40,8 +40,9 @@ func (p StatusInvestProvider) fetchAPI(ticker string) ([]HistoricalData, error) 
 		Timeout: time.Second * 10,
 	}
 
+	tickerCode := strings.ToLower(ticker)
 	data := url.Values{}
-	data.Set("codes", strings.ToLower(ticker))
+	data.Set("codes", tickerCode)
 	data.Set("time", "5")
 	data.Add("byQuarter", "false")
 	data.Add("futureData", "false")
@@ -73,5 +74,5 @@ func (p StatusInvestProvider) fetchAPI(ticker string) ([]HistoricalData, error) 
 	var statusIResponse StatusInvestResponse
 	json.Unmarshal(body, &statusIResponse)
 
-	return statusIResponse.Data[ticker], nil
+	return statusIResponse.Data[tickerCode], nil
 }
