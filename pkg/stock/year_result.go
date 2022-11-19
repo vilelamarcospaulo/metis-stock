@@ -1,6 +1,6 @@
 package stock
 
-type Fundamentals struct {
+type YearResult struct {
 	year int
 	ROE  float32
 }
