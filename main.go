@@ -18,8 +18,10 @@ func main() {
 	}
 
 	rules := []rule.Rule{
-		rule.ReturnOnEquity(),
 		rule.PriceByEquity(),
+		rule.PriceByProfit(),
+		rule.ReturnOnEquity(),
+		rule.CagrProfit(),
 	}
 
 	portfolioFundamentalistEvaluator := executor.NewEvaluator(
