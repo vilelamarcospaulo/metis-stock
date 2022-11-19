@@ -12,10 +12,14 @@ func main() {
 
 	stocks := []*stock.Stock{
 		stock.NewStock("SANB4"),
+		stock.NewStock("MOVI3"),
+		stock.NewStock("NEOE3"),
+		stock.NewStock("SULA11"),
 	}
 
 	rules := []rule.Rule{
 		rule.ReturnOnEquity(),
+		rule.PriceByEquity(),
 	}
 
 	portfolioFundamentalistEvaluator := executor.NewEvaluator(

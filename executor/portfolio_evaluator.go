@@ -55,7 +55,7 @@ func (p *PortfolioEvaluator) eval() {
 				continue
 			}
 
-			fmt.Printf("\t [%s] :: [%f] \n", rule.Title, result)
+			fmt.Printf("\t [%s] :: [%f] \n", rule.Description, result)
 		}
 	}
 }

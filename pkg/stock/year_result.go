@@ -1,6 +1,7 @@
 package stock
 
 type YearResult struct {
-	year int
-	ROE  float32
+	Year          int
+	ROE           float32
+	PriceByEquity float32
 }

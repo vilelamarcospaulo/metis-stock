@@ -6,7 +6,7 @@ import (
 
 type Rule struct {
 	Title       string
-	description string
+	Description string
 	threshold   int                            // 0 - 100
 	processor   func(stock.Stock) (int, error) // 0 - 100
 }
@@ -14,7 +14,7 @@ type Rule struct {
 func newRule(title string, desc string, processor func(stock.Stock) (int, error)) Rule {
 	return Rule{
 		Title:       title,
-		description: desc,
+		Description: desc,
 		threshold:   90,
 		processor:   processor,
 	}

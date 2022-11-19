@@ -47,7 +47,13 @@ func (p StatusInvestProvider) buildYearResult(historicalData map[string]Historic
 		panic(1)
 	}
 
+	PriceByEquity, err := historicalData["p_vp"].getByRank(year)
+	if err != nil {
+		panic(1)
+	}
+
 	result.ROE = roe
+	result.PriceByEquity = PriceByEquity
 
 	return result
 }
