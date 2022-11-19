@@ -14,17 +14,17 @@ func ReturnOnEquity() *Rule {
 func CalcRoe(stock stock.Stock) (int, error) {
 	yearsToConsider := 5 // TODO :: Create a config file
 
-	if len(stock.Fundamentals) < yearsToConsider {
-		return 0, fmt.Errorf("not enough data, %d years", len(stock.Fundamentals))
+	if len(stock.Results) < yearsToConsider {
+		return 0, fmt.Errorf("not enough data, %d years", len(stock.Results))
 	}
 
 	yearsAboveExpected := 0
 	for year := 0; year < yearsToConsider; year-- {
-		if stock.Fundamentals[year].ROE == math.MinInt {
+		if stock.Results[year].ROE == math.MinInt {
 			return 0, fmt.Errorf("not valid data for year %d", year)
 		}
 
-		if stock.Fundamentals[year].ROE > 0.5 {
+		if stock.Results[year].ROE > 0.5 {
 			yearsAboveExpected += 1
 		}
 	}
