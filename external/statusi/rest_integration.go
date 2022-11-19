@@ -20,12 +20,22 @@ type HistoricalData struct {
 	Ranks []HistoricalDataRank
 }
 
-type HistoricalDataRank struct {
-	Rank  int
-	Value float64
+func (h HistoricalData) getByRank(rank int) (float32, error) {
+	for _, r := range h.Ranks {
+		if r.Rank == rank {
+			return r.Value, nil
+		}
+	}
+
+	return 0, fmt.Errorf("not found value for %d", rank)
 }
 
-func (p *StatusInvestProvider) fetchAPI(ticker string) ([]HistoricalData, error) {
+type HistoricalDataRank struct {
+	Rank  int
+	Value float32
+}
+
+func (p StatusInvestProvider) fetchAPI(ticker string) ([]HistoricalData, error) {
 	client := &http.Client{
 		Timeout: time.Second * 10,
 	}
