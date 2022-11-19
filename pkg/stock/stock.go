@@ -21,6 +21,6 @@ func NewStock(ticker string) *Stock {
 	}
 }
 
-func AppendF(s *Stock, f Fundamentals) {
+func (s *Stock) AppendF(f Fundamentals) {
 	s.Fundamentals = append(s.Fundamentals, f)
 }

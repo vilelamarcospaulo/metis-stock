@@ -20,7 +20,7 @@ func newRule(title string, desc string, processor func(stock.Stock) (int, error)
 	}
 }
 
-func Eval(r *Rule, stock stock.Stock) (float32, error) {
+func (r *Rule) Eval(stock stock.Stock) (float32, error) {
 	score, err := r.processor(stock)
 	if err != nil {
 		return 0, err
