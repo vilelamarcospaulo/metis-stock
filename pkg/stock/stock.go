@@ -9,8 +9,9 @@ const (
 )
 
 type Stock struct {
-	class  StockClass
-	ticker string
+	class        StockClass
+	ticker       string
+	Fundamentals []Fundamentals
 }
 
 func NewStock(ticker string) *Stock {
@@ -18,4 +19,8 @@ func NewStock(ticker string) *Stock {
 		class:  STOCK,
 		ticker: ticker,
 	}
+}
+
+func AppendF(s *Stock, f Fundamentals) {
+	s.Fundamentals = append(s.Fundamentals, f)
 }
