@@ -44,7 +44,7 @@ func (p *PortfolioEvaluator) eval() {
 
 	for _, asset := range p.Assets {
 		fmt.Print("------------------------------------\n\n")
-		fmt.Printf("--RUNNING FOR [%s] \n", asset.Ticker)
+		fmt.Printf("-- [%s] \n", asset.Ticker)
 
 		for _, rule := range p.Rules {
 			// fmt.Printf("\tRUNNING RULE [%s] \n", rule.Title)
