@@ -22,6 +22,7 @@ func main() {
 		rule.PriceByProfit(),
 		rule.ReturnOnEquity(),
 		rule.CagrProfit(),
+		rule.DebtByEbitda(),
 	}
 
 	portfolioFundamentalistEvaluator := executor.NewEvaluator(

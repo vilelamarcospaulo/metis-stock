@@ -6,4 +6,5 @@ type YearResult struct {
 	PriceByEquity float32
 	PriceByProfit float32
 	CagrProfit    float32
+	DebtByEbitda  float32
 }

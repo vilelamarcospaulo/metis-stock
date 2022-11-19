@@ -17,7 +17,7 @@ func (p StatusInvestProvider) LoadFundamentals(s *stock.Stock, currentYear int, 
 	}
 
 	for year := currentYear; year > currentYear-windowSize; year-- {
-		fmt.Printf("Building result for [%s][%d] - [%d]\n", s.Ticker, year, len(s.Results))
+		// fmt.Printf("Building result for [%s][%d] - [%d]\n", s.Ticker, year, len(s.Results))
 		fundamentals := p.buildYearResult(indexedHistorical, year)
 		s.Results = append(s.Results, fundamentals)
 	}
@@ -62,10 +62,16 @@ func (p StatusInvestProvider) buildYearResult(historicalData map[string]Historic
 		panic(err)
 	}
 
+	dividaliquida_ebitda, err := historicalData["dividaliquida_ebitda"].getByRank(year)
+	if err != nil {
+		panic(err)
+	}
+
 	result.ROE = roe
 	result.PriceByEquity = PriceByEquity
 	result.PriceByProfit = PriceByProfit
 	result.CagrProfit = lucros_cagr5
+	result.DebtByEbitda = dividaliquida_ebitda
 
 	return result
 }

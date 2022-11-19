@@ -15,7 +15,7 @@ func newRule(title string, desc string, processor func(stock.Stock) (int, error)
 	return Rule{
 		Title:       title,
 		Description: desc,
-		threshold:   90,
+		threshold:   70,
 		processor:   processor,
 	}
 }
@@ -27,7 +27,7 @@ func (r *Rule) Eval(stock stock.Stock) (float32, error) {
 	}
 
 	if score > r.threshold {
-		return 1, nil
+		return float32(score), nil
 	}
 
 	return -1, nil
