@@ -7,10 +7,10 @@ import (
 )
 
 func PriceByEquity() Rule {
-	return newRule("P/VP", "P/VP belows 5", CheckPriceByEquity)
+	return newRule("P/VP", "P/VP belows 5", checkPriceByEquity)
 }
 
-func CheckPriceByEquity(stock stock.Stock) (int, error) {
+func checkPriceByEquity(stock stock.Stock) (int, error) {
 	if len(stock.Results) < 1 {
 		return 0, fmt.Errorf("not enough data, %d years", len(stock.Results))
 	}

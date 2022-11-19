@@ -8,10 +8,10 @@ import (
 )
 
 func ReturnOnEquity() Rule {
-	return newRule("ROE", "ROE above 5% last 5 years", CalcRoe)
+	return newRule("ROE", "ROE above 5% last 5 years", calcRoe)
 }
 
-func CalcRoe(stock stock.Stock) (int, error) {
+func calcRoe(stock stock.Stock) (int, error) {
 	yearsToConsider := 5 // TODO :: Create a config file
 
 	if len(stock.Results) < yearsToConsider {
