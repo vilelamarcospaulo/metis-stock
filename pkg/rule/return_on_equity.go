@@ -7,7 +7,7 @@ import (
 	"github.com/vilelamarcospaulo/metis/pkg/stock"
 )
 
-func ReturnOnEquity() *Rule {
+func ReturnOnEquity() Rule {
 	return newRule("ROE", "ROE above 5% last 5 years", CalcRoe)
 }
 
@@ -19,7 +19,7 @@ func CalcRoe(stock stock.Stock) (int, error) {
 	}
 
 	yearsAboveExpected := 0
-	for year := 0; year < yearsToConsider; year-- {
+	for year := 0; year < yearsToConsider; year++ {
 		if stock.Results[year].ROE == math.MinInt {
 			return 0, fmt.Errorf("not valid data for year %d", year)
 		}

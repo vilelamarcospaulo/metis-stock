@@ -5,15 +5,15 @@ import (
 )
 
 type Rule struct {
-	title       string
+	Title       string
 	description string
 	threshold   int                            // 0 - 100
 	processor   func(stock.Stock) (int, error) // 0 - 100
 }
 
-func newRule(title string, desc string, processor func(stock.Stock) (int, error)) *Rule {
-	return &Rule{
-		title:       title,
+func newRule(title string, desc string, processor func(stock.Stock) (int, error)) Rule {
+	return Rule{
+		Title:       title,
 		description: desc,
 		threshold:   90,
 		processor:   processor,
