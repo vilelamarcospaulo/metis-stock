@@ -52,8 +52,14 @@ func (p StatusInvestProvider) buildYearResult(historicalData map[string]Historic
 		panic(1)
 	}
 
+	lucros_cagr5, err := historicalData["lucros_cagr5"].getByRank(year)
+	if err != nil {
+		panic(err)
+	}
+
 	result.ROE = roe
 	result.PriceByEquity = PriceByEquity
+	result.CagrProfit = lucros_cagr5
 
 	return result
 }
