@@ -41,7 +41,7 @@ func (p StatusInvestProvider) fetchAPI(ticker string) ([]HistoricalData, error) 
 	}
 
 	data := url.Values{}
-	data.Set("codes", ticker)
+	data.Set("codes", strings.ToLower(ticker))
 	data.Set("time", "5")
 	data.Add("byQuarter", "false")
 	data.Add("futureData", "false")

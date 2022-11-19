@@ -17,7 +17,7 @@ func (p StatusInvestProvider) LoadFundamentals(s *stock.Stock, currentYear int, 
 	}
 
 	for year := currentYear; year > currentYear-windowSize; year-- {
-		fmt.Printf("building result for [%s][%d]\n", s.Ticker, currentYear)
+		fmt.Printf("Building result for [%s][%d] - [%d]\n", s.Ticker, year, len(s.Results))
 		fundamentals := p.buildYearResult(indexedHistorical, year)
 		s.Results = append(s.Results, fundamentals)
 	}
