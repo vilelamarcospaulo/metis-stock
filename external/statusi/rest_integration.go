@@ -20,14 +20,15 @@ type HistoricalData struct {
 	Ranks []HistoricalDataRank
 }
 
-func (h HistoricalData) getByRank(rank int) (float32, error) {
+func (h HistoricalData) getByRank(rank int) float32 {
 	for _, r := range h.Ranks {
 		if r.Rank == rank {
-			return r.Value, nil
+			return r.Value
 		}
 	}
 
-	return 0, fmt.Errorf("not found value for %d", rank)
+	fmt.Println("not found value for %d", rank)
+	panic(1)
 }
 
 type HistoricalDataRank struct {

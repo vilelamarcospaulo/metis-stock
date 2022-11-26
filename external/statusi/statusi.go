@@ -40,38 +40,11 @@ func (p StatusInvestProvider) fetchData(ticker string) (map[string]HistoricalDat
 }
 
 func (p StatusInvestProvider) buildYearResult(historicalData map[string]HistoricalData, year int) stock.YearResult {
-	result := stock.YearResult{}
-
-	roe, err := historicalData["roe"].getByRank(year)
-	if err != nil {
-		panic(1)
+	return stock.YearResult{
+		ROE:           historicalData["roe"].getByRank(year),
+		PriceByEquity: historicalData["p_vp"].getByRank(year),
+		PriceByProfit: historicalData["p_l"].getByRank(year),
+		CagrProfit:    historicalData["lucros_cagr5"].getByRank(year),
+		DebtByEbitda:  historicalData["dividaliquida_ebitda"].getByRank(year),
 	}
-
-	PriceByEquity, err := historicalData["p_vp"].getByRank(year)
-	if err != nil {
-		panic(1)
-	}
-
-	PriceByProfit, err := historicalData["p_l"].getByRank(year)
-	if err != nil {
-		panic(1)
-	}
-
-	lucros_cagr5, err := historicalData["lucros_cagr5"].getByRank(year)
-	if err != nil {
-		panic(err)
-	}
-
-	dividaliquida_ebitda, err := historicalData["dividaliquida_ebitda"].getByRank(year)
-	if err != nil {
-		panic(err)
-	}
-
-	result.ROE = roe
-	result.PriceByEquity = PriceByEquity
-	result.PriceByProfit = PriceByProfit
-	result.CagrProfit = lucros_cagr5
-	result.DebtByEbitda = dividaliquida_ebitda
-
-	return result
 }
