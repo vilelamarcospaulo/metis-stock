@@ -1,4 +1,4 @@
-package models
+package stock
 
 type AssetType int
 
