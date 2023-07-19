@@ -1,18 +1,22 @@
 package rule
 
-import "github.com/vilelamarcospaulo/metis/pkg/stock"
+import (
+	"math"
+
+	"github.com/vilelamarcospaulo/metis/pkg/stock"
+)
 
 func checkRoeGreaterThan(_ stock.Asset, HistoricalData []stock.Historical) float64 {
 	greater := 0
-	checked := 0
-	for _, val := range HistoricalData {
-		checked++
+	analised := int(math.Min(float64(len(HistoricalData)), 5))
+
+	for _, val := range HistoricalData[:analised] {
 		if val.Return_on_equity >= 5 {
 			greater++
 		}
 	}
 
-	return float64(greater) / float64(checked)
+	return float64(greater) / float64(analised)
 }
 
 func RoeGreaterThan() Rule {
