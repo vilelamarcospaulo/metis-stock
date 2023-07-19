@@ -56,3 +56,13 @@ func TestRoeGreaterThan_WhenGreaterThan5_InAllYears(t *testing.T) {
 		t.Errorf("ROE [22,13,10,6,8] should be true")
 	}
 }
+
+func TestRoeGreaterThan_WhenGreaterThan5_OnlyInFirst5Years(t *testing.T) {
+	asset := stock.NewAsset(3, "FOO", "Foo Company")
+	historicalData := buildHistoricalData([]float64{22, 13, 10, 6, 8, 1, 1, 1, 1, 1, 1})
+	rule := rule.RoeGreaterThan()
+
+	if !rule.Evaluate(asset, historicalData) {
+		t.Errorf("ROE [22,13,10,6,8] should be true")
+	}
+}
