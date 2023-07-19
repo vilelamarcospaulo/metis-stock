@@ -23,5 +23,5 @@ func newRule(title string, description string, evaluator evaluator) Rule {
 }
 
 func (r Rule) Evaluate(asset stock.Asset, historicalData []stock.Historical) bool {
-	return r.evaluator(asset, historicalData) > r.threshold
+	return r.evaluator(asset, historicalData) >= r.threshold
 }
