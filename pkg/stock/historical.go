@@ -1,7 +1,7 @@
 package stock
 
 type Historical struct {
-	year                       int
+	Year                       int
 	profit                     float64
 	debt                       float64
 	property                   float64

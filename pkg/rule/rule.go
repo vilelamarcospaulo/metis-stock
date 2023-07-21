@@ -13,7 +13,7 @@ type Rule struct {
 	threshold   float64
 }
 
-func newRule(title string, description string, evaluator evaluator) Rule {
+func NewRule(title string, description string, evaluator evaluator) Rule {
 	return Rule{
 		Title:       title,
 		Description: description,

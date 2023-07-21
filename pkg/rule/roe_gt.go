@@ -20,7 +20,7 @@ func checkRoeGreaterThan(_ stock.Asset, HistoricalData []stock.Historical) float
 }
 
 func RoeGreaterThan() Rule {
-	return newRule(
+	return NewRule(
 		"roe_gt_five",
 		"Check company's ROE is greater than 5% for the past years",
 		checkRoeGreaterThan,
