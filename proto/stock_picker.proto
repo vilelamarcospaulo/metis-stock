@@ -4,7 +4,7 @@ import "google/protobuf/timestamp.proto";
 
 package stock_picker;
 
-option go_package = "pkg/models";
+option go_package = "stock_picker_proto/generated/models";
 
 service StockPickerService {
   rpc GetStockPriceFluctuation (GetStockFluctuationRequest) returns (GetStockFluctuationResponse) {}
@@ -18,5 +18,6 @@ message GetStockFluctuationRequest {
 }
 
 message GetStockFluctuationResponse {
-  double priceFluctuation = 1;
+  double before = 1;
+  double after = 2;
 }
