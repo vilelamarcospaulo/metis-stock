@@ -22,3 +22,40 @@ protoc --proto_path=./proto --go_out=./generated/go --go-grpc_out=./generated/go
 ```
 
 It should generate a few `*.pb.go` at `/generated/go/*`.
+
+
+### Usage
+
+Since we're establishing a connection, it's important to create our own network :)
+
+```bash
+docker network create grpc-network
+```
+
+#### Server
+
+Build:
+
+```bash
+docker build . -t server --progress=plain
+```
+
+Run:
+
+```bash
+docker run -d --name server --network grpc-network -p 50051:50051 server
+```
+
+### Client
+
+Build:
+
+```bash
+docker build . -t client --progress=plain
+```
+
+Run:
+
+```bash
+docker run --network grpc-network client
+```
