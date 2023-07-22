@@ -6,8 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net"
-
-	"github.com/gardusig/stock-picker/server/generated/models"
+	"server/generated/models"
 
 	"google.golang.org/grpc"
 )
@@ -16,9 +15,11 @@ var (
 	port = flag.Int("port", 50051, "The server port")
 )
 
-type server struct{}
+type StockService struct {
+	models.UnimplementedStockPickerServiceServer
+}
 
-func (s *server) GetStockPriceFluctuation(ctx context.Context, req *models.GetStockFluctuationRequest) (*models.GetStockFluctuationResponse, error) {
+func (s *StockService) GetStockPriceFluctuation(ctx context.Context, req *models.GetStockFluctuationRequest) (*models.GetStockFluctuationResponse, error) {
 	// Your implementation to handle the gRPC request goes here
 	// For example, you can perform some computations and return the response
 	return &models.GetStockFluctuationResponse{
@@ -34,7 +35,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
-	models.RegisterStockPickerServiceServer(s, &server{})
+	models.RegisterStockPickerServiceServer(s, &StockService{})
 	log.Printf("server listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
