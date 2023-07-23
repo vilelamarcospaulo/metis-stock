@@ -6,7 +6,7 @@ import (
 )
 
 type DataProvider interface {
-	GetHistoricalData(ticker string) []stock.Historical
+	GetHistoricalData(ticker string) []stock.YearResult
 }
 
 type RuleEvaluation struct {
@@ -16,7 +16,7 @@ type RuleEvaluation struct {
 
 type AssetEvaluation struct {
 	Asset          stock.Asset
-	HistoricalData []stock.Historical
+	HistoricalData []stock.YearResult
 	Score          float64
 	Result         []RuleEvaluation
 }

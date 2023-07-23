@@ -6,12 +6,12 @@ import (
 	"github.com/vilelamarcospaulo/metis/pkg/stock"
 )
 
-func checkRoeGreaterThan(_ stock.Asset, HistoricalData []stock.Historical) float64 {
+func checkRoeGreaterThan(_ stock.Asset, HistoricalData []stock.YearResult) float64 {
 	greater := 0
 	analised := int(math.Min(float64(len(HistoricalData)), 5))
 
 	for _, val := range HistoricalData[:analised] {
-		if val.Return_on_equity >= 5 {
+		if val.ROE >= 5 {
 			greater++
 		}
 	}

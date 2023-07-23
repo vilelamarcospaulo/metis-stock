@@ -7,11 +7,11 @@ import (
 	"github.com/vilelamarcospaulo/metis/pkg/stock"
 )
 
-func buildHistoricalData(roe []float64) []stock.Historical {
-	historicalData := []stock.Historical{}
+func buildHistoricalData(roe []float64) []stock.YearResult {
+	historicalData := []stock.YearResult{}
 	for _, val := range roe {
 		historicalData = append(historicalData,
-			stock.Historical{Return_on_equity: val})
+			stock.YearResult{ROE: val})
 	}
 
 	return historicalData

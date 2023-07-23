@@ -11,22 +11,22 @@ import (
 type MockDataProvider struct {
 }
 
-func (m MockDataProvider) GetHistoricalData(ticker string) []stock.Historical {
+func (m MockDataProvider) GetHistoricalData(ticker string) []stock.YearResult {
 	if ticker == "PETR4" {
-		return []stock.Historical{
-			{Year: 2022, Return_on_equity: 10},
-			{Year: 2021, Return_on_equity: 3},
-			{Year: 2020, Return_on_equity: 2},
-			{Year: 2019, Return_on_equity: 3},
-			{Year: 2018, Return_on_equity: 3},
+		return []stock.YearResult{
+			{Year: 2022, ROE: 10},
+			{Year: 2021, ROE: 3},
+			{Year: 2020, ROE: 2},
+			{Year: 2019, ROE: 3},
+			{Year: 2018, ROE: 3},
 		}
 	}
-	return []stock.Historical{
-		{Year: 2022, Return_on_equity: 10},
-		{Year: 2021, Return_on_equity: 10},
-		{Year: 2020, Return_on_equity: 10},
-		{Year: 2019, Return_on_equity: 10},
-		{Year: 2018, Return_on_equity: 3},
+	return []stock.YearResult{
+		{Year: 2022, ROE: 10},
+		{Year: 2021, ROE: 10},
+		{Year: 2020, ROE: 10},
+		{Year: 2019, ROE: 10},
+		{Year: 2018, ROE: 3},
 	}
 }
 
@@ -38,7 +38,7 @@ func buildEvaluator() evaluator.Evaluator {
 			rule.NewRule(
 				"always true",
 				"always true",
-				func(asset stock.Asset, historicalData []stock.Historical) float64 {
+				func(asset stock.Asset, historicalData []stock.YearResult) float64 {
 					return 1.0
 				},
 			),

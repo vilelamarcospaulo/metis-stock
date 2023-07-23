@@ -12,10 +12,10 @@ type StatusInvestDataProvider struct {
 
 type indexedIndicatorData map[string]StatusInvestIndicatorData
 
-func (data indexedIndicatorData) buildHistoricalData(year int) stock.Historical {
-	return stock.Historical{
-		Year:             year,
-		Return_on_equity: data["roe"].getByYear(year),
+func (data indexedIndicatorData) buildHistoricalData(year int) stock.YearResult {
+	return stock.YearResult{
+		Year: year,
+		ROE:  data["roe"].getByYear(year),
 	}
 }
 
@@ -31,7 +31,7 @@ func (h StatusInvestIndicatorData) getByYear(year int) float64 {
 	panic(1)
 }
 
-func (s StatusInvestDataProvider) GetHistoricalData(ticker string) []stock.Historical {
+func (s StatusInvestDataProvider) GetHistoricalData(ticker string) []stock.YearResult {
 	logrus.Debugf("Fetching historical data for %s", ticker)
 	result, err := s.fetchAPI(ticker)
 	if err != nil {
@@ -45,7 +45,7 @@ func (s StatusInvestDataProvider) GetHistoricalData(ticker string) []stock.Histo
 		indexedData[data.Key] = data
 	}
 
-	historicalData := []stock.Historical{}
+	historicalData := []stock.YearResult{}
 	for year := 2022; year >= 2018; year-- {
 		logrus.Debugf("Building historical data for %s in %d", ticker, year)
 		yearData := indexedData.buildHistoricalData(year)
