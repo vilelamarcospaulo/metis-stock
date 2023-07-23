@@ -3,6 +3,7 @@ package status_invest
 import (
 	"fmt"
 
+	"github.com/sirupsen/logrus"
 	"github.com/vilelamarcospaulo/metis/pkg/stock"
 )
 
@@ -31,21 +32,26 @@ func (h StatusInvestIndicatorData) getByYear(year int) float64 {
 }
 
 func (s StatusInvestDataProvider) GetHistoricalData(ticker string) []stock.Historical {
+	logrus.Debugf("Fetching historical data for %s", ticker)
 	result, err := s.fetchAPI(ticker)
 	if err != nil {
+		logrus.Errorf("Error fetching historical data for %s: %s", ticker, err)
 		panic(1)
 	}
 
 	indexedData := indexedIndicatorData{}
+	logrus.Debugf("Indexing indicators data for %s", ticker)
 	for _, data := range result {
 		indexedData[data.Key] = data
 	}
 
 	historicalData := []stock.Historical{}
 	for year := 2022; year >= 2018; year-- {
+		logrus.Debugf("Building historical data for %s in %d", ticker, year)
 		yearData := indexedData.buildHistoricalData(year)
 		historicalData = append(historicalData, yearData)
 	}
 
+	logrus.Debugf("Historical data for %s: %v", ticker, historicalData)
 	return historicalData
 }

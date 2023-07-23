@@ -1,14 +1,17 @@
 package main
 
 import (
-	"fmt"
-
+	"github.com/sirupsen/logrus"
 	"github.com/vilelamarcospaulo/metis/internal/status_invest"
 )
 
-func main() {
-	dataProvider := status_invest.StatusInvestDataProvider{}
-	historicalData := dataProvider.GetHistoricalData("PETR4")
+func init() {
+	logrus.SetLevel(logrus.DebugLevel)
+}
 
-	fmt.Println(historicalData)
+func main() {
+	logrus.Info("Starting Metis")
+
+	dataProvider := status_invest.StatusInvestDataProvider{}
+	dataProvider.GetHistoricalData("PETR4")
 }
