@@ -20,9 +20,11 @@ func main() {
 	// TODO :: Retrieve assets and rules from user wallet and preferences
 	assets := []stock.Asset{
 		stock.NewAsset(0, "SANB4", "Santander"),
+		stock.NewAsset(0, "VIVT3", "Santander"),
 	}
 	rules := []rule.Rule{
 		rule.RoeGreaterThan(),
+		rule.RevenueCagrGreaterThan(),
 	}
 
 	evaluator := evaluator.NewEvaluator(dataProvider, rules)
