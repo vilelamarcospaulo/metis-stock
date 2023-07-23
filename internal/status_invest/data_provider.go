@@ -14,9 +14,10 @@ type indexedIndicatorData map[string]StatusInvestIndicatorData
 
 func (data indexedIndicatorData) buildHistoricalData(year int) stock.YearResult {
 	return stock.YearResult{
-		Year:        year,
-		ROE:         data["roe"].getByYear(year),
-		RevenueCAGR: data["receitas_cagr5"].getByYear(year),
+		Year:         year,
+		ROE:          data["roe"].getByYear(year),
+		RevenueCAGR:  data["receitas_cagr5"].getByYear(year),
+		DebtByEBITDA: data["dividaliquida_ebitda"].getByYear(year),
 	}
 }
 

@@ -25,6 +25,7 @@ func main() {
 	rules := []rule.Rule{
 		rule.RoeGreaterThan(),
 		rule.RevenueCagrGreaterThan(),
+		rule.DebtByEbitaLowerThan(),
 	}
 
 	evaluator := evaluator.NewEvaluator(dataProvider, rules)
