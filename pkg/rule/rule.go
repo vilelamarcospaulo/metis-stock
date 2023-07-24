@@ -4,7 +4,8 @@ import (
 	"github.com/vilelamarcospaulo/metis/pkg/stock"
 )
 
-type evaluator func(AssetType stock.Asset, HistoricalData []stock.YearResult) float64
+type YearResultList []stock.YearResult
+type evaluator func(stock.Asset, YearResultList) float64
 
 type Rule struct {
 	Title       string
@@ -22,6 +23,6 @@ func NewRule(title string, description string, evaluator evaluator) Rule {
 	}
 }
 
-func (r Rule) Evaluate(asset stock.Asset, historicalData []stock.YearResult) bool {
-	return r.evaluator(asset, historicalData) >= r.threshold
+func (r Rule) Evaluate(asset stock.Asset, h YearResultList) bool {
+	return r.evaluator(asset, h) >= r.threshold
 }

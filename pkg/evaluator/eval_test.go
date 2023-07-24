@@ -38,7 +38,7 @@ func buildEvaluator() evaluator.Evaluator {
 			rule.NewRule(
 				"always true",
 				"always true",
-				func(asset stock.Asset, historicalData []stock.YearResult) float64 {
+				func(asset stock.Asset, historicalData rule.YearResultList) float64 {
 					return 1.0
 				},
 			),
